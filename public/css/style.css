@@ -1,0 +1,15 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.header-dist{height: 50px;}
+.footer-dist{height: 40px;}
+.main-footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

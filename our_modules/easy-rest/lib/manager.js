@@ -4,9 +4,10 @@
 
 /*dependencies*/
 var async = require('async'),
-    _util = require('../lib/util'),
+    _util = require('../../../lib/util'),
     store = require('../lib/store'),
-    _ = require('underscore');
+    _ = require('underscore'),
+    config = require('../../.');
 
 /*global vars*/
 var managerName = 'manager',
@@ -141,20 +142,47 @@ function _search(req, res) {   //todo add child object
     ], res.getResponseWriter());
 }
 
+/**
+ * start controller
+ *
+ * @param req
+ * @param res
+ * @private
+ */
+function _start(req, res) {
+    //get all models
+    var modelList = store.getModelKeys();
+
+    res.render('manager/start', {
+        title: 'Welcome manager',
+        modelList: modelList
+    });
+}
+
 
 function bindRoutes(app) {
-    var route = ['/', managerName, '/:entity'].join('');
+    var mainRoute = ['/', managerName].join(''),
+        entityRoute = ['/', managerName, '/:entity'].join('');
 
-    //bind all controllers
-    app.get(route + '/search', _search);
+    //bond start page
+    app.get(mainRoute, _start);
+    //todo decide how better switch between interfaces
+    //todo for rest define error responds
 
-    app.post(route, _create);
+    //bind all entity controllers
+    app.get(entityRoute + '/search', _search);
+    app.get(entityRoute + '/:id', _read);
+    app.post(entityRoute, _create);
 
-    app.get(route + '/:id', _read);
+    if(config.isRESTInterface){
+        app.put(entityRoute + '/:id', _update);
+        app.delete(entityRoute + '/:id', _delete);
+    } else {
+        //mean web
+        app.post(entityRoute + '/:id', _update);
+        app.post(entityRoute + '/:id/delete', _delete);
+    }
 
-    app.put(route + '/:id', _update);
-
-    app.delete(route + '/:id', _delete);
 }
 
 module.exports = bindRoutes;

@@ -8,7 +8,8 @@ var conf = {
     db: {
         connectUrl: 'postgres://postgres:postgres@localhost:5432/cat-manager',
         dialect: 'postgres'
-    }
+    },
+    isRESTInterface: false //define that manager will respond on rest crud command
 };
 
 

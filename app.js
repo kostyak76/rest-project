@@ -16,7 +16,7 @@ var util = require('./lib/util');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(favicon());
+app.use(favicon('./favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -44,6 +44,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.render('error', {
+            title: 'Error',
             message: err.message,
             error: err
         });
@@ -55,7 +56,8 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
     res.render('error', {
         message: err.message,
-        error: {}
+        error: {},
+        title: 'Error'
     });
 });
 

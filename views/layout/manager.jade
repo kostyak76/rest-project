@@ -1,0 +1,12 @@
+extends main
+
+block nav-items
+    li.dropdown
+        a(href='/manager', class='dropdown-toggle', data-toggle='dropdown') Manager
+            b.caret
+        ul.dropdown-menu
+            each item in modelList
+                li: a(href='/manager/#{item}/search')= item
+
+//
+           !!!! change /manager to our config link

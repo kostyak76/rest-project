@@ -1,0 +1,36 @@
+doctype html
+html(lang=en)
+    head
+        title= title
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        link(rel='stylesheet', href='/css/bootstrap.css')
+        link(rel='stylesheet', href='/css/bootstrap-theme.css')
+        link(rel='stylesheet', href='/css/style.css')
+
+    body
+        header(class="navbar navbar-inverse navbar-fixed-top")
+            section.container
+                div.navbar-header
+                    button(type="button", class="navbar-toggle", data-toggle="collapse", data-target=".navbar-collapse")
+                        span(class='sr-only') Togle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand Catalogue Manager
+
+                div(class="navbar-collapse collapse")
+                    ul(class="nav navbar-nav")
+                        li.active: a(href='/') Home
+                        block nav-items
+                            li: a(href='/manager') Manager
+
+        article.container
+            header.header-dist
+            block content
+            footer.footer-dist
+        footer.panel-footer.main-footer
+            - var year = new Date().getFullYear()
+            section.container kostyak - #{year}
+        section
+            script(src='/js/jquery.js')
+            script(src='/js/bootstrap.js')

@@ -5,7 +5,7 @@
 
 /* dependencies */
 var Sequelize = require('sequelize'),
-    config = require('../configuration'),
+    config = require('../../.'),
     chainer = new Sequelize.Utils.QueryChainer,
     dbConfig = config.db,
     async = require('async'),
@@ -62,5 +62,8 @@ module.exports = {
     chainer: chainer,
     getModel: function(key){
         return MODELS[key];
+    },
+    getModelKeys: function(){
+        return _.keys(MODELS);
     }
 };

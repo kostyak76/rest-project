@@ -1,0 +1,26 @@
+{
+    "name": "easy-rest",
+    "version": "0.0.0",
+    "description": "this is lightweight rest server",
+    "main": "index.js",
+    "scripts": {
+        "test": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "keywords": [
+        "rest",
+        "sequelize",
+        "node"
+    ],
+    "author": "K.Kovtushenko",
+    "license": "MIT",
+    "dependencies": {
+        "sequelize": "1.7.*",
+        "async": "0.2.*",
+        "underscore": "1.6.*"
+    },
+    "devDependencies": {}
+}
